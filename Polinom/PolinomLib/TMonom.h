@@ -1,15 +1,13 @@
 #pragma once
-
+using namespace std;
 
 // Каждый узел в связанном списке хранит ненулевой член многочлена, включая поля данных коэффициента и экспоненты 
 #pragma once
 class TMonom
 {
-private:
+public:
 	double coef;
 	int ind;
-	//int* indmas;
-public:
 	TMonom() {
 		coef = 0;
 		ind = 0;
@@ -17,38 +15,31 @@ public:
 
 	TMonom(double _coef, int degX, int degY, int degZ) {
 		coef = _coef;
+		if (_coef == 0) throw  ("Coef can't be zero");
 		ind = 100 * degX + 10 * degY + degZ;
 	}
 
-	void SetCoef(int cval) { coef = cval; }
-	int GetCoef(void) { return coef; }
+	void SetCoef(int cval) { this->coef = cval; }
+	int GetCoef(void) { return this->coef; }
 
-	void SetIndex(int ival) { ind = ival; }
-	int GetIndex(void) { return ind; }
+	void SetIndex(int ival) { this->ind = ival; }
+	int GetIndex(void) { return this->ind; }
 
 
 	bool operator==(const TMonom& other) {
-		if (coef != other.coef) return false;
-		if (ind != other.ind) return false;
-		return true;
+		return this->coef == other.coef && this->ind == other.ind;
 	}
 
 	bool operator!=(const TMonom& other) {
-		if (coef != other.coef) return true;
-		if (ind != other.ind) return true;
-		return false;
+		return this->coef != other.coef || this->ind != other.ind;
 	}
 
 	bool operator>(const TMonom& other) {
-		if (coef < other.coef) return false;
-		if (ind < other.ind) return false;
-		return true;
+		return this->ind > other.ind || (this->ind == other.ind && this->coef > other.coef);
 	}
 
 	bool operator<(const TMonom& other) {
-		if (coef > other.coef) return false;
-		if (ind > other.ind) return false;
-		return true;
+		return this->ind < other.ind || (this->ind == other.ind && this->coef < other.coef);
 	}
 
 

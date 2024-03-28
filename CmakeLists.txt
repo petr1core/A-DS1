@@ -4,7 +4,6 @@ project(${PROJECT_NAME})
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-
 ### Tables
 set(BaseTable BaseTable)
 set(BaseTableTest BaseTableTest)
